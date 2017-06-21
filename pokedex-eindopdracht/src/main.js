@@ -26,8 +26,6 @@ import TypeLinks from './views/TypeLinks';
 
         Backbone.history.start({pushState: true, root: '/pokedex-eindopdracht/'});
 
-        console.log("started");
-
     };
 
     window.addEventListener('load', init);

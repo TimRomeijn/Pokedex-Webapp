@@ -28,8 +28,6 @@ const TypeLinks = View.extend({
     {
         e.preventDefault();
 
-        console.log("click");
-
         //Get target the retrieve data properties
         let target = e.currentTarget;
         let url = 'type/' + target.dataset['id'];

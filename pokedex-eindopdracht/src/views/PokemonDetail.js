@@ -14,7 +14,7 @@ const PokemonListView = View.extend({
 
     initialize: function ()
     {
-        console.log("fdf");
+    
         //The templates that will be used
         this.templatePokemonDetail = _.template(this.$('#template-pokemon-detail').html());
         this.templateError = _.template(this.$('#template-error').html());
@@ -30,7 +30,7 @@ const PokemonListView = View.extend({
      */
     loadPokemon: function (data)
     {
-        console.log("start loading details");
+    
         this.collection.id = data.id;
         this.collection.fetch({
             success: (collection) => this.loadPokemonSuccessHandler(collection),
@@ -48,8 +48,6 @@ const PokemonListView = View.extend({
      */
     loadPokemonSuccessHandler: function (collection)
     {
-        console.log("succes");
-        console.log(collection);
         this.$el.html(this.templatePokemonDetail({pokemons: collection.models}));
         App.events.trigger('removePokemonList', {});
         document.getElementById("pokemon-detail").style.zIndex = 15;
@@ -63,9 +61,6 @@ const PokemonListView = View.extend({
      */
     loadPokemonErrorHandler: function (collection, response)
     {
-        console.log(response);
-
-        console.log("error");
         this.$el.html(this.templateError({message: response.responseJSON.error}));
     }
 });

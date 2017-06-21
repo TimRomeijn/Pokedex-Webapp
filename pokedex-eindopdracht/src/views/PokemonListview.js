@@ -16,7 +16,6 @@ const PokemonListView = View.extend({
 
     initialize: function ()
     {
-        console.log("fdf");
         //The templates that will be used
         this.templateTypes = _.template(this.$('#template-types').html());
         this.templateError = _.template(this.$('#template-error').html());
@@ -38,7 +37,6 @@ const PokemonListView = View.extend({
 
     loadTypes: function (data)
     {
-        console.log("start loading");
         this.collection.id = data.id;
         this.collection.fetch({
             success: (collection) => this.loadPokemonsSuccessHandler(collection),
@@ -55,9 +53,7 @@ const PokemonListView = View.extend({
      * @param collection
      */
     loadPokemonsSuccessHandler: function (collection)
-    {
-        console.log("succes loaded pokemans");
-    
+    {    
         this.$el.html(this.templateTypes({types: collection.models}));
 
         let pokemonCollection = new Pokemons;
@@ -74,9 +70,6 @@ const PokemonListView = View.extend({
      */
     loadPokemonsErrorHandler: function (collection, response)
     {
-        console.log(response);
-
-        console.log("error");
         this.$el.html(this.templateError({message: response.responseJSON.error}));
     }
 });

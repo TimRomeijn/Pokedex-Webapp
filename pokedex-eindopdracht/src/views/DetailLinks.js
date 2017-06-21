@@ -28,7 +28,6 @@ const DetailLinks = View.extend({
     {
         e.preventDefault();
 
-        console.log("click detail");
 
         //Get target the retrieve data properties
         let target = e.currentTarget;

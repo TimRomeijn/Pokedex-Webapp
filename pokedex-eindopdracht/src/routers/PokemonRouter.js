@@ -20,7 +20,6 @@ const PokemonRouter = Router.extend({
     //Route action for types
     typeAction: function (id)
     {
-        console.log("routed");
         App.events.trigger('newPokemon', {
             id: id
         });
@@ -29,7 +28,6 @@ const PokemonRouter = Router.extend({
     //Route action for pokemon
     pokemonAction: function (id)
     {
-        console.log("<INPUT ID> I SELECT YOU!")
         App.events.trigger('newPokemonDetail', {
             id: id
         });
