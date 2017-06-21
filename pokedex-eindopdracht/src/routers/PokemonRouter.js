@@ -14,8 +14,7 @@ const PokemonRouter = Router.extend({
     /**
      * Route callback, used to trigger global event
      *
-     * @param league
-     * @param club
+   
      */
 
     //Route action for types
