@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Pokedex Eindopracht</title>
+    <link type="text/css" rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+    <div id="main-container">
+        <a href="/pokedex-eindopdracht/"><img src="Pokemon_logo.png" class="dexheader"></a>
+        <!--Maincontent here-->
+        <div id="pokedex-container">
+            <div id="pokemon-view">
+                <!--Pokemon content here-->
+                    <h3>Pick a Type!</h3>
+                    <div id="type-container">
+                        <ul id="type-select">
+                            <li><a href="#" data-id="1"> Normal</a></li>
+                            <li><a href="#" data-id="2">Fighting</a></li>
+                            <li><a href="#" data-id="3">Flying</a></li>
+                            <li><a href="#" data-id="4">Poison</a></li>
+                            <li><a href="#" data-id="5">Ground</a></li>
+                            <li><a href="#" data-id="6">Rock</a></li>
+                            <li><a href="#" data-id="7">Bug</a></li>
+                            <li><a href="#" data-id="8">Ghost</a></li>
+                            <li><a href="#" data-id="9">Steel</a></li>
+                            <li><a href="#" data-id="10">Fire</a></li>
+                            <li><a href="#" data-id="11">Water</a></li>
+                            <li><a href="#" data-id="12">Grass</a></li>
+                            <li><a href="#" data-id="13">Electric</a></li>
+                            <li><a href="#" data-id="14">Psychic</a></li>
+                            <li><a href="#" data-id="15">Ice</a></li>
+                            <li><a href="#" data-id="16">Dragon</a></li>
+                            <li><a href="#" data-id="17">Dark</a></li>
+                            <li><a href="#" data-id="18">Fairy</a></li>
+                        </ul>
+                    </div>   
+                    <script id="template-error" type="text/template">
+                        <span class="error"><%= message %></span>
+                    </script>
+                    <script id="template-types" type="text/template">
+                        <% _.each(types, function (type, index, list){%>
+                            <h1><%= type.attributes.name %></h1>
+                                <% _.each(type.get('pokemon'), function(pokemon, index, list){ %>
+                                    <div class="pokemon-overview">
+                                        <div class="pokemons">
+                                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemon.pokemon['url'].split('/')[6] %>.png">
+                                            <span class="number-symbol">#</span>
+                                            <span class="pokemon-number"><%= pokemon.pokemon['url'].split('/')[6] %></span>
+                                            <span class="seperator-symbol">-</span>
+                                            <span class="pokemon-name"><%= pokemon.pokemon.name %></span>
+                                            <div class="detail-links">
+                                                <a href="#" data-id="<%= pokemon.pokemon['url'].split('/')[6] %>">Detail</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                        <% }); %>
+                    </script>
+
+            </div>
+            <div id="pokemon-detail">
+                <script id="template-error" type="text/template">
+                    <span><%= message %></span>
+                </script>
+                <script id="template-pokemon-detail" type="text/template">
+                    <% _.each(pokemons, function(pokemon, index, list){ %>
+                        <h3 class="pokemon-name"><%= pokemon.attributes.name %></h3>
+                        <div class="pokemon-info">
+                            <div class="pokemon-info-images">
+                                <img class="pokemon-info-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemon.attributes.forms[0].url.split('/')[6] %>.png">
+                                <h3 class="pokemon-name">Shiny</h3>
+                                 <img class="pokemon-info-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/<%= pokemon.attributes.forms[0].url.split('/')[6] %>.png">
+                            </div>
+                            <div class="pokemon-info-move-stats">
+                                <table class="pokemon-info-stats">
+                                    <tr>
+                                        <th>Height:</th>
+                                        <td><%= pokemon.attributes.height /10 %>m</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Weight:</th>
+                                        <td><%= pokemon.attributes.weight /10 %>kg</td> 
+                                    </tr>
+                                    <tr> 
+                                        <th>Ability:</th>
+                                        <td><%=pokemon.attributes.abilities[0].ability.name%>
+                                    </tr>
+                                </table>
+                                <h3>Trainer Vs. Pokemon Scale</h3>
+                                <div class="scaleImages">
+                                    <img src="../trainer.png" class="trainerImg">
+                                    <img style="width: <%= (pokemon.attributes.height*10 / 2) + (2 * 10) %>px; height: <%= (pokemon.attributes.height*10 / 2) + (2 * 10) %>px;" class="scaleImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemon.attributes.forms[0].url.split('/')[6] %>.png">
+                                </div>
+                                <h3>Moves</h3>
+                                <table class="pokemon-info-moves">
+                                    <tr>
+                                        <th>Move Name:</th>
+                                        <th>Learned At Level:</td>
+                                    </tr>
+                                    <% _.each(pokemon.attributes.moves, function(move, index, list){ %>
+                                        <tr>
+                                            <td><%= move.move.name %></td>
+                                            <td><%= move.version_group_details[0].level_learned_at %></td>
+                                        </tr>
+                                    <% }); %>
+                                </table>
+                            </div>
+                        </div>
+                    <% }); %>
+                </script>
+            </div>
+        </div>
+    </div>
+<script src="../pokedex-eindopdracht/dist/bundle.js" type="text/javascript"></script>
+</body>
+</html>
